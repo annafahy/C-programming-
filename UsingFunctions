@@ -1,0 +1,92 @@
+#include "stdafx.h"
+
+int countVowels (char string[]);
+int isVowel(char c);
+int getLength(char string[]);
+char upperLetter(char c);
+void upperString(char string[]);
+
+int main()
+{
+	char string[81];
+	int numVowels, len;
+
+	puts("Enter string:");
+	gets_s(string, 80);
+
+	len = getLength(string);
+	printf ("Length of String = %d \n\n", len);
+
+	numVowels = countVowels(string);
+	printf ("Number of vowels = %d \n\n", numVowels);
+
+	upperString (string);
+	printf ("In CAPITALS: %s \n\n", string);
+
+	return 0;
+}
+
+int countVowels (char string[])
+{
+	int i =0, count = 0, len;
+
+	len = getLength(string);
+
+	for(i=0; i < len; i++)
+	{
+		if (isVowel(string[i])) count++;
+		i++;
+	}
+	return count;
+}
+
+int isVowel(char c)
+{
+	if (c <= 90) c = c + 28;
+	if ((c == 'a') || (c == 'e') || (c == 'i') || (c == 'o') || (c == 'u') )
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int getLength(char string[])
+{
+	int i=0;
+
+	while(string[i] != '\0')
+	{
+		i++;
+	}
+	return i;
+}
+
+
+char upperLetter(char c)
+{
+	int diff = 'a' - 'A';
+
+	if ((c >= 97) && (c <= 122))
+	{
+		c = c - diff;
+	}
+	
+	return c;
+}
+
+void upperString (char string[])
+{
+	int i, len, diff;
+
+	len = getLength(string);
+	diff = 'a' - 'A';
+
+	for (i=0;i<len;i++)
+	{
+			string[i] = upperLetter(string[i]);
+	}
+}
+
